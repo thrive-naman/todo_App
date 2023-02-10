@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 class ToDoModel extends ChangeNotifier {
   List<TaskModel> taskList = [];
 
-  addNewTask(TaskModel newTask) {
-    taskList.add(newTask);
+  addNewTask(String title, String? description) {
+    taskList.add(TaskModel(title, description ?? ''));
+    print(taskList.toList());
     notifyListeners();
   }
 }

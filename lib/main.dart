@@ -1,7 +1,11 @@
+import 'package:first_provider/appRoutes.dart';
 import 'package:first_provider/changeNotifier.dart';
 import 'package:first_provider/first.dart';
+import 'package:first_provider/formValidator.dart';
 import 'package:first_provider/proxyProvider.dart';
 import 'package:first_provider/taskList_view.dart';
+import 'package:first_provider/taskModel.dart';
+import 'package:first_provider/todoModel.dart';
 import 'package:flutter/foundation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +28,8 @@ void main(List<String> args) {
   runApp(
     MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (_) => FieldValidator()),
+        ChangeNotifierProvider(create: (_) => ToDoModel()),
         ChangeNotifierProvider(create: (_) => DarkModeModel()),
         ChangeNotifierProvider(create: (_) => Counter()),
         Provider<Name>(create: (_) => Name()),
@@ -65,13 +71,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      initialRoute: '/',
+      routes: routes,
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         fontFamily: GoogleFonts.lato().fontFamily,
         primarySwatch: Colors.indigo,
       ),
-      home: TaskList(),
+      // home: TaskList(),
     );
   }
 }
@@ -117,4 +125,7 @@ class AppText {
 
 class AppColors {
   static Color lightIndigo = Colors.indigo[100]!;
+  static Color darkIndigo = Colors.indigo[900]!;
+  static Color greyText = Colors.grey[900]!;
+  static Color whiteText = Colors.white;
 }
